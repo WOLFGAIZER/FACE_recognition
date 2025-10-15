@@ -189,6 +189,18 @@ try:
             cv2.putText(frame, "ANGER ALERT!", (10, 60),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 3)
             trigger_alarm()
+        
+        # Fatigue detection
+        if emotion_label == "fatigue" and emotion_conf >= 0.55:
+            cv2.putText(frame, "FATIGUE ALERT!", (10, 90),
+                         cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 165, 0), 3)
+            trigger_alarm()
+
+        # Drowsiness detection (emotion-based, separate from EAR-based)
+        if emotion_label == "drowsy" and emotion_conf >= 0.55:
+            cv2.putText(frame, "DROWSINESS ALERT (MODEL)!", (10, 120),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 140, 255), 3)
+        trigger_alarm()
 
         # Draw landmarks and info
         mp_drawing.draw_landmarks(
